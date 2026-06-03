@@ -68,6 +68,47 @@ function closePanel() {
   }, 500);
 }
 
+// Hint blink — pouze na mobilu, 1× r1 pak 2× r2
+if (window.matchMedia('(max-width: 480px)').matches) {
+  function blink(row, times, onDone) {
+    if (times <= 0) { onDone?.(); return; }
+    const spans = row.querySelectorAll('.sound, .co, .suffix');
+    const dimMs     = times > 1 ? 120 : 220;
+    const recoveryMs = times > 1 ? 160 : 320;
+    spans.forEach(s => s.style.opacity = '0.6');
+    setTimeout(() => {
+      spans.forEach(s => s.style.opacity = '');
+      setTimeout(() => blink(row, times - 1, onDone), recoveryMs);
+    }, dimMs);
+  }
+
+  const r1 = document.querySelector('.r1');
+  const r2 = document.querySelector('.r2');
+  const r3 = document.querySelector('.r3');
+  const r4 = document.querySelector('.r4');
+
+  function runCycle() {
+    if (isOpen) return;
+    blink(r1, 1, () => {
+      setTimeout(() => blink(r2, 2, () => {
+        setTimeout(() => blink(r3, 1, () => {
+          setTimeout(() => blink(r4, 1, null), 500);
+        }), 500);
+      }), 500);
+    });
+  }
+
+  let cycles = 0;
+  function scheduleCycle() {
+    if (cycles >= 3) return;
+    cycles++;
+    runCycle();
+    setTimeout(scheduleCycle, 10000);
+  }
+
+  setTimeout(scheduleCycle, 2500);
+}
+
 document.querySelectorAll('.entry').forEach(entry => {
   const btn = entry.querySelector('.row[role="button"]');
   btn.addEventListener('click', () => openPanel(entry));
