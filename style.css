@@ -265,12 +265,23 @@ footer p {
 /* ─── MOBILE ────────────────────────────────────────────────── */
 
 @media (max-width: 480px) {
-  .row {
-    font-size: clamp(1.3rem, 9.5vw, 2.5rem);
+  .hero {
+    padding: 2rem 1rem;
+  }
+
+  .row,
+  .exp-heading {
+    font-size: clamp(1rem, 8.5vw, 2.2rem);
   }
 
   .info-inner {
     flex-direction: column;
     gap: 1.75rem;
+  }
+
+  .info,
+  footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
