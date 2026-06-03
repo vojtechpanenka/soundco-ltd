@@ -199,6 +199,29 @@ body {
   line-height: 1.75;
 }
 
+.exp-below-content p + p {
+  margin-top: 1rem;
+}
+
+.course-item + .course-item {
+  margin-top: 1.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.course-name {
+  font-size: clamp(0.85rem, 1.3vw, 1rem);
+  font-weight: 500;
+  color: var(--co);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.2rem;
+}
+
+.course-tagline {
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
 /* ─── INFO ──────────────────────────────────────────────────── */
 
 .info {

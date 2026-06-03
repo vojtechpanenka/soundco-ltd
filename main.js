@@ -5,7 +5,7 @@ const wordmark   = document.querySelector('.wordmark');
 const expanded   = document.getElementById('expanded');
 const expHeading = expanded.querySelector('.exp-heading');
 const expBelow   = expanded.querySelector('.exp-below');
-const expContent = expanded.querySelector('.exp-below-content p');
+const expContent = expanded.querySelector('.exp-below-content');
 
 let isOpen = false;
 
@@ -14,7 +14,7 @@ function openPanel(entry) {
   isOpen = true;
 
   expHeading.innerHTML = entry.querySelector('.row[role="button"]').innerHTML;
-  expContent.textContent = entry.querySelector('.panel-content p').textContent;
+  expContent.innerHTML = entry.querySelector('.panel-content').innerHTML;
   expanded.dataset.service = entry.dataset.service;
   expBelow.classList.remove('open');
 
