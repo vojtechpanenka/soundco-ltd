@@ -24,6 +24,9 @@ function openPanel(entry) {
 
   setTimeout(() => {
     // 2. Wordmark úplně z layoutu, expanded nahoře
+    const cs = getComputedStyle(hero);
+    const heroPad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+    hero.style.minHeight = (wordmark.offsetHeight + heroPad) + 'px';
     wordmark.style.display = 'none';
     hero.classList.add('is-expanded');
 
@@ -54,6 +57,7 @@ function closePanel() {
     setTimeout(() => {
       expanded.style.display = 'none';
       hero.classList.remove('is-expanded');
+      hero.style.minHeight = '';
 
       // Fade in wordmark
       wordmark.style.transition = 'none';
